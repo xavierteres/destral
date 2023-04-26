@@ -53,9 +53,8 @@ def destral(modules, tests, all_tests=None, enable_coverage=None,
             os.makedirs(junitxml_directory)
     if not modules:
         ci_pull_request = os.environ.get('CI_PULL_REQUEST')
-        token = os.environ.get('GITHUB_TOKEN')
         repository = os.environ.get('CI_REPO')
-        if ci_pull_request and token and repository:
+        if ci_pull_request and repository:
             try:
                 int(ci_pull_request)
             except:
@@ -68,7 +67,6 @@ def destral(modules, tests, all_tests=None, enable_coverage=None,
             req = requests.get(
                 url,
                 headers={
-                    'Authorization': 'token {0}'.format(token),
                     'Accept': 'application/vnd.github.patch'
                 }
             )
